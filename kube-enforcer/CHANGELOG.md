@@ -2,23 +2,23 @@
 All notable changes to this project will be documented in this file.
 
 ## 2022.4.32 ( Nov 8th, 2023 )
-* Change starboard operator as default, and Trivy operator as optional with KE deployment
+* Change starboard operator as default, and Tunnel operator as optional with KE deployment
 
 ## 2022.4.31 ( Oct 24th, 2023 )
-* Add support for trivy resource definition SLK-74400
-* Add support for trivy images pull for private registry SLK-74401
+* Add support for tunnel resource definition SLK-74400
+* Add support for tunnel images pull for private registry SLK-74401
 * Fix KHULNASOFT_ENFORCER_DS_NAME KubeEnforcer configMap value SLK-74436
 * Add certs secret to checksum/config of deployment PR[#784](https://github.com/khulnasoft/khulnasoft-helm/pull/784)
-* Add nodeSelector to trivy operator PR[#786](https://github.com/khulnasoft/khulnasoft-helm/pull/786)
+* Add nodeSelector to tunnel operator PR[#786](https://github.com/khulnasoft/khulnasoft-helm/pull/786)
 
 ## 2022.4.30 ( Oct 4th, 2023 )
 * Update auto-generate-tls.yaml timeoutSeconds
 
 ## 2022.4.29 ( Sep 26th, 2023 )
-* Add Trivy installation to kube-enforcer
+* Add Tunnel installation to kube-enforcer
 
 ### ⚠ BREAKING CHANGES
-The following upgrade will uninstall Starboard and replace it with Trivy.
+The following upgrade will uninstall Starboard and replace it with Tunnel.
 The ```clusterconfigauditreports.khulnasoft.github.io``` and ```configauditreports.khulnasoft.github.io``` CustomResourceDefinitions need to be deleted before upgrading.
 
 ## 2022.4.28 ( Sep 21st, 2023 )

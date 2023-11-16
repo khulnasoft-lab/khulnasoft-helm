@@ -348,13 +348,13 @@ starboard:
   podAnnotations: {}
   affinity: {}
 
-## To Enable Trivy Operator instead of Starboard Operator
-trivy:
-  enabled: false    #Enable to install trivy operator and make starboard.enabled to false(only one operator can be enabled for KE per deployment)
-  appName: "trivy-operator"
+## To Enable Tunnel Operator instead of Starboard Operator
+tunnel:
+  enabled: false    #Enable to install tunnel operator and make starboard.enabled to false(only one operator can be enabled for KE per deployment)
+  appName: "tunnel-operator"
   image:
     registry: "docker.io/khulnasoft"
-    repository: "trivy-operator"
+    repository: "tunnel-operator"
     tag: "0.11.0"
     pullPolicy: IfNotPresent
     # Reference the secret for private registry
@@ -365,7 +365,7 @@ trivy:
     probeContainerPort: 9090
   serviceAccount:
     create: true
-    name: "trivy-operator"
+    name: "tunnel-operator"
   livenessProbe:
     httpGet:
       path: /healthz/

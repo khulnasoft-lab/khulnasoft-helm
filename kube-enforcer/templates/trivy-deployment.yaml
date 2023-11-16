@@ -1,41 +1,41 @@
 ---
-{{- if .Values.trivy.enabled }}
+{{- if .Values.tunnel.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.trivy.appName }}
+  name: {{ .Values.tunnel.appName }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ .Values.trivy.appName }}
-    app.kubernetes.io/instance: {{ .Values.trivy.appName }}
-    app.kubernetes.io/version: {{ .Values.trivy.image.tag | quote }}
+    app.kubernetes.io/name: {{ .Values.tunnel.appName }}
+    app.kubernetes.io/instance: {{ .Values.tunnel.appName }}
+    app.kubernetes.io/version: {{ .Values.tunnel.image.tag | quote }}
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 spec:
-  replicas: {{ .Values.trivy.replicaCount }}
+  replicas: {{ .Values.tunnel.replicaCount }}
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ .Values.trivy.appName }}
-      app.kubernetes.io/instance: {{ .Values.trivy.appName }}
+      app.kubernetes.io/name: {{ .Values.tunnel.appName }}
+      app.kubernetes.io/instance: {{ .Values.tunnel.appName }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ .Values.trivy.appName }}
-        app.kubernetes.io/instance: {{ .Values.trivy.appName }}
-        app.kubernetes.io/version: {{ .Values.trivy.image.tag | quote }}
+        app.kubernetes.io/name: {{ .Values.tunnel.appName }}
+        app.kubernetes.io/instance: {{ .Values.tunnel.appName }}
+        app.kubernetes.io/version: {{ .Values.tunnel.image.tag | quote }}
         app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     spec:
-      serviceAccountName: {{ template "serviceAccountTrivy" . }}
+      serviceAccountName: {{ template "serviceAccountTunnel" . }}
       automountServiceAccountToken: true
-     {{- if ne .Values.trivy.image.secretName "" }}
+     {{- if ne .Values.tunnel.image.secretName "" }}
       imagePullSecrets:
-        - name: {{ .Values.trivy.image.secretName }}
+        - name: {{ .Values.tunnel.image.secretName }}
       {{- end }}
       containers:
-        - name: {{ .Values.trivy.appName }}
-          image: "{{ .Values.trivy.image.registry }}/{{ .Values.trivy.image.repository }}:{{ .Values.trivy.image.tag }}"
-          imagePullPolicy: {{ .Values.trivy.image.pullPolicy }}
+        - name: {{ .Values.tunnel.appName }}
+          image: "{{ .Values.tunnel.image.registry }}/{{ .Values.tunnel.image.repository }}:{{ .Values.tunnel.image.tag }}"
+          imagePullPolicy: {{ .Values.tunnel.image.pullPolicy }}
           env:
             - name: OPERATOR_NAMESPACE
               value: {{ .Release.Namespace }}
@@ -46,7 +46,7 @@ spec:
             - name: OPERATOR_TARGET_WORKLOADS
               value: "pod,replicaset,replicationcontroller,statefulset,daemonset,cronjob,job"
             - name: OPERATOR_SERVICE_ACCOUNT
-              value: {{ .Values.trivy.appName }}
+              value: {{ .Values.tunnel.appName }}
             - name: OPERATOR_LOG_DEV_MODE
               value: "false"
             - name: OPERATOR_SCAN_JOB_TIMEOUT
@@ -93,17 +93,17 @@ spec:
               value: "{}"
             - name: OPERATOR_ACCESS_GLOBAL_SECRETS_SERVICE_ACCOUNTS
               value: "true"
-            - name: OPERATOR_BUILT_IN_TRIVY_SERVER
+            - name: OPERATOR_BUILT_IN_TUNNEL_SERVER
               value: "false"
-            - name: TRIVY_SERVER_HEALTH_CHECK_CACHE_EXPIRATION
+            - name: TUNNEL_SERVER_HEALTH_CHECK_CACHE_EXPIRATION
               value: "10h"
             - name: OPERATOR_MERGE_RBAC_FINDING_WITH_CONFIG_AUDIT
               value: "true"
           ports:
             - name: metrics
-              containerPort: {{ .Values.trivy.ports.metricContainerPort }}
+              containerPort: {{ .Values.tunnel.ports.metricContainerPort }}
             - name: probes
-              containerPort: {{ .Values.trivy.ports.probeContainerPort }}
+              containerPort: {{ .Values.tunnel.ports.probeContainerPort }}
           readinessProbe:
             httpGet:
               path: /readyz/
@@ -112,11 +112,11 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
-          {{- with .Values.trivy.livenessProbe }}
+          {{- with .Values.tunnel.livenessProbe }}
           livenessProbe:
           {{ toYaml . | nindent 12 }}
           {{- end }}
-          {{- if  (not .Values.trivy.resources)  }}
+          {{- if  (not .Values.tunnel.resources)  }}
           resources:
             requests:
               cpu: "500m"
@@ -125,7 +125,7 @@ spec:
               cpu: "1000m"
               memory: "500Mi"
           {{- else }}
-          resources: {{ toYaml .Values.trivy.resources | nindent 12 }}
+          resources: {{ toYaml .Values.tunnel.resources | nindent 12 }}
           {{- end }}
           securityContext:
             allowPrivilegeEscalation: false
@@ -135,7 +135,7 @@ spec:
             privileged: false
             readOnlyRootFilesystem: true
       securityContext:
-      {{- with .Values.trivy.nodeSelector }}
+      {{- with .Values.tunnel.nodeSelector }}
       nodeSelector:
         {{ toYaml . | nindent 8 }}
       {{- end }}

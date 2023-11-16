@@ -158,10 +158,10 @@ Inject extra environment populated by secrets, if populated
 {{- end -}}
 {{- end -}}
 
-{{- define "serviceAccountTrivy" -}}
-{{- if .Values.trivy.serviceAccount.create -}}
-    {{ .Values.trivy.serviceAccount.name | default (printf "%s-trivy-sa" .Release.Name) }}
-{{- else if not .Values.trivy.serviceAccount.create -}}
-    {{ .Values.trivy.serviceAccount.name | default (printf "%s-sa" .Release.Name) }}
+{{- define "serviceAccountTunnel" -}}
+{{- if .Values.tunnel.serviceAccount.create -}}
+    {{ .Values.tunnel.serviceAccount.name | default (printf "%s-tunnel-sa" .Release.Name) }}
+{{- else if not .Values.tunnel.serviceAccount.create -}}
+    {{ .Values.tunnel.serviceAccount.name | default (printf "%s-sa" .Release.Name) }}
 {{- end -}}
 {{- end -}}

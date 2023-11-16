@@ -53,13 +53,13 @@ pipeline {
                 }
             }
         }
-        stage("Trivy scan") {
+        stage("Tunnel scan") {
             steps {
                 script {
                     parallel charts.collectEntries { chart ->
                         ["${chart}": {
-                            stage("Trivy scan ${chart}") {
-                                helmBasic.trivyScan(chart)
+                            stage("Tunnel scan ${chart}") {
+                                helmBasic.tunnelScan(chart)
                             }
                         }]
                     }

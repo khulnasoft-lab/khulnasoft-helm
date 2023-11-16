@@ -1,58 +1,58 @@
 ---
-{{- if .Values.trivy.enabled }}
+{{- if .Values.tunnel.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Values.trivy.appName }}
+  name: {{ .Values.tunnel.appName }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ .Values.trivy.appName }}
-    app.kubernetes.io/instance: {{ .Values.trivy.appName }}
-    app.kubernetes.io/version: {{ .Values.trivy.image.tag | quote }}
+    app.kubernetes.io/name: {{ .Values.tunnel.appName }}
+    app.kubernetes.io/instance: {{ .Values.tunnel.appName }}
+    app.kubernetes.io/version: {{ .Values.tunnel.image.tag | quote }}
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 data:
   scanJob.podTemplateContainerSecurityContext: "{\"allowPrivilegeEscalation\":false,\"capabilities\":{\"drop\":[\"ALL\"]},\"privileged\":false,\"readOnlyRootFilesystem\":true}"
   scanJob.compressLogs: "true"
-  vulnerabilityReports.scanner: "Trivy"
-  configAuditReports.scanner: "Trivy"
+  vulnerabilityReports.scanner: "Tunnel"
+  configAuditReports.scanner: "Tunnel"
   report.recordFailedChecksOnly: "false"
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Values.trivy.appName }}-trivy-config
+  name: {{ .Values.tunnel.appName }}-tunnel-config
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ .Values.trivy.appName }}
-    app.kubernetes.io/instance: {{ .Values.trivy.appName }}
-    app.kubernetes.io/version: {{ .Values.trivy.image.tag | quote }}
+    app.kubernetes.io/name: {{ .Values.tunnel.appName }}
+    app.kubernetes.io/instance: {{ .Values.tunnel.appName }}
+    app.kubernetes.io/version: {{ .Values.tunnel.image.tag | quote }}
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 data:
-  trivy.repository: "ghcr.io/khulnasoft/trivy"
-  trivy.tag: "0.36.0"
-  trivy.additionalVulnerabilityReportFields: ""
-  trivy.severity: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
-  trivy.slow: "true"
-  trivy.dbRepository: "ghcr.io/khulnasoft/trivy-db"
-  trivy.command: "image"
-  trivy.dbRepositoryInsecure: "false"
-  trivy.useBuiltinRegoPolicies: "false"
-  trivy.supportedConfigAuditKinds: "Workload,Service,Role,RoleBinding,ClusterRole,ClusterRoleBinding,NetworkPolicy,Ingress,LimitRange,ResourceQuota,ConfigMap"
-  trivy.timeout: "5m0s"
-  trivy.mode: "Standalone"
-  trivy.resources.requests.cpu: 100m
-  trivy.resources.requests.memory: 100M
-  trivy.resources.limits.cpu: 500m
-  trivy.resources.limits.memory: 500M
+  tunnel.repository: "ghcr.io/khulnasoft/tunnel"
+  tunnel.tag: "0.36.0"
+  tunnel.additionalVulnerabilityReportFields: ""
+  tunnel.severity: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
+  tunnel.slow: "true"
+  tunnel.dbRepository: "ghcr.io/khulnasoft/tunnel-db"
+  tunnel.command: "image"
+  tunnel.dbRepositoryInsecure: "false"
+  tunnel.useBuiltinRegoPolicies: "false"
+  tunnel.supportedConfigAuditKinds: "Workload,Service,Role,RoleBinding,ClusterRole,ClusterRoleBinding,NetworkPolicy,Ingress,LimitRange,ResourceQuota,ConfigMap"
+  tunnel.timeout: "5m0s"
+  tunnel.mode: "Standalone"
+  tunnel.resources.requests.cpu: 100m
+  tunnel.resources.requests.memory: 100M
+  tunnel.resources.limits.cpu: 500m
+  tunnel.resources.limits.memory: 500M
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Values.trivy.appName }}-policies-config
+  name: {{ .Values.tunnel.appName }}-policies-config
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ .Values.trivy.appName }}
-    app.kubernetes.io/instance: {{ .Values.trivy.appName }}
-    app.kubernetes.io/version: {{ .Values.trivy.image.tag | quote }}
+    app.kubernetes.io/name: {{ .Values.tunnel.appName }}
+    app.kubernetes.io/instance: {{ .Values.tunnel.appName }}
+    app.kubernetes.io/version: {{ .Values.tunnel.image.tag | quote }}
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 {{- end }}

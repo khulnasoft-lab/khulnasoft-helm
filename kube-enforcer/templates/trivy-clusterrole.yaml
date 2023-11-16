@@ -1,9 +1,9 @@
 ---
-{{- if .Values.trivy.enabled }}
+{{- if .Values.tunnel.enabled }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ .Values.trivy.appName }}
+  name: {{ .Values.tunnel.appName }}
 rules:
   - apiGroups:
       - ""
