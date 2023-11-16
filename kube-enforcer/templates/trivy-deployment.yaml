@@ -1,0 +1,142 @@
+---
+{{- if .Values.tunnel.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.tunnel.appName }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.tunnel.appName }}
+    app.kubernetes.io/instance: {{ .Values.tunnel.appName }}
+    app.kubernetes.io/version: {{ .Values.tunnel.image.tag | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+spec:
+  replicas: {{ .Values.tunnel.replicaCount }}
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Values.tunnel.appName }}
+      app.kubernetes.io/instance: {{ .Values.tunnel.appName }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Values.tunnel.appName }}
+        app.kubernetes.io/instance: {{ .Values.tunnel.appName }}
+        app.kubernetes.io/version: {{ .Values.tunnel.image.tag | quote }}
+        app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    spec:
+      serviceAccountName: {{ template "serviceAccountTunnel" . }}
+      automountServiceAccountToken: true
+     {{- if ne .Values.tunnel.image.secretName "" }}
+      imagePullSecrets:
+        - name: {{ .Values.tunnel.image.secretName }}
+      {{- end }}
+      containers:
+        - name: {{ .Values.tunnel.appName }}
+          image: "{{ .Values.tunnel.image.registry }}/{{ .Values.tunnel.image.repository }}:{{ .Values.tunnel.image.tag }}"
+          imagePullPolicy: {{ .Values.tunnel.image.pullPolicy }}
+          env:
+            - name: OPERATOR_NAMESPACE
+              value: {{ .Release.Namespace }}
+            - name: OPERATOR_TARGET_NAMESPACES
+              value: ""
+            - name: OPERATOR_EXCLUDE_NAMESPACES
+              value: ""
+            - name: OPERATOR_TARGET_WORKLOADS
+              value: "pod,replicaset,replicationcontroller,statefulset,daemonset,cronjob,job"
+            - name: OPERATOR_SERVICE_ACCOUNT
+              value: {{ .Values.tunnel.appName }}
+            - name: OPERATOR_LOG_DEV_MODE
+              value: "false"
+            - name: OPERATOR_SCAN_JOB_TIMEOUT
+              value: "5m"
+            - name: OPERATOR_CONCURRENT_SCAN_JOBS_LIMIT
+              value: "10"
+            - name: OPERATOR_SCAN_JOB_RETRY_AFTER
+              value: "30s"
+            - name: OPERATOR_BATCH_DELETE_LIMIT
+              value: "10"
+            - name: OPERATOR_BATCH_DELETE_DELAY
+              value: "10s"
+            - name: OPERATOR_METRICS_BIND_ADDRESS
+              value: ":8080"
+            - name: OPERATOR_METRICS_FINDINGS_ENABLED
+              value: "true"
+            - name: OPERATOR_METRICS_VULN_ID_ENABLED
+              value: "false"
+            - name: OPERATOR_HEALTH_PROBE_BIND_ADDRESS
+              value: ":9090"
+            - name: OPERATOR_VULNERABILITY_SCANNER_ENABLED
+              value: "false"
+            - name: OPERATOR_VULNERABILITY_SCANNER_SCAN_ONLY_CURRENT_REVISIONS
+              value: "true"
+            - name: OPERATOR_SCANNER_REPORT_TTL
+              value: "24h"
+            - name: OPERATOR_CONFIG_AUDIT_SCANNER_ENABLED
+              value: "true"
+            - name: OPERATOR_CLUSTER_COMPLIANCE_ENABLED
+              value: "false"
+            - name: OPERATOR_RBAC_ASSESSMENT_SCANNER_ENABLED
+              value: "true"
+            - name: OPERATOR_INFRA_ASSESSMENT_SCANNER_ENABLED
+              value: "false"
+            - name: OPERATOR_CONFIG_AUDIT_SCANNER_SCAN_ONLY_CURRENT_REVISIONS
+              value: "true"
+            - name: OPERATOR_EXPOSED_SECRET_SCANNER_ENABLED
+              value: "false"
+            - name: OPERATOR_WEBHOOK_BROADCAST_URL
+              value: ""
+            - name: OPERATOR_WEBHOOK_BROADCAST_TIMEOUT
+              value: "30s"
+            - name: OPERATOR_PRIVATE_REGISTRY_SCAN_SECRETS_NAMES
+              value: "{}"
+            - name: OPERATOR_ACCESS_GLOBAL_SECRETS_SERVICE_ACCOUNTS
+              value: "true"
+            - name: OPERATOR_BUILT_IN_TUNNEL_SERVER
+              value: "false"
+            - name: TUNNEL_SERVER_HEALTH_CHECK_CACHE_EXPIRATION
+              value: "10h"
+            - name: OPERATOR_MERGE_RBAC_FINDING_WITH_CONFIG_AUDIT
+              value: "true"
+          ports:
+            - name: metrics
+              containerPort: {{ .Values.tunnel.ports.metricContainerPort }}
+            - name: probes
+              containerPort: {{ .Values.tunnel.ports.probeContainerPort }}
+          readinessProbe:
+            httpGet:
+              path: /readyz/
+              port: probes
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          {{- with .Values.tunnel.livenessProbe }}
+          livenessProbe:
+          {{ toYaml . | nindent 12 }}
+          {{- end }}
+          {{- if  (not .Values.tunnel.resources)  }}
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "125Mi"
+            limits:
+              cpu: "1000m"
+              memory: "500Mi"
+          {{- else }}
+          resources: {{ toYaml .Values.tunnel.resources | nindent 12 }}
+          {{- end }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+      securityContext:
+      {{- with .Values.tunnel.nodeSelector }}
+      nodeSelector:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}
