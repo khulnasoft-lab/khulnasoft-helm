@@ -1,0 +1,32 @@
+{{- if not .Values.windowsEnforcer.allWinNodes.enable }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-enforcer-config
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Release.Name }}-ds
+    khulnasoft.component: enforcer
+{{ include "khulnasoft.labels" . | indent 4 }}
+data:
+  {{- if .Values.multiple_gateway.enabled }}
+  KHULNASOFT_SERVER: {{ join "," .Values.multi_gates }}
+  {{- else }}
+  KHULNASOFT_SERVER: {{ .Values.global.gateway.address | default "khulnasoft-gateway-svc" }}:{{ .Values.global.gateway.port | default "8443" }}
+  {{- end }}
+  KHULNASOFT_INSTALL_PATH: "/var/lib/khulnasoft"
+  {{- if .Values.hostRunPath }}
+  KHULNASOFT_HOST_RUN_PATH: {{ .Values.hostRunPath | quote }}
+  {{- end }}
+  {{- if .Values.TLS.enabled }}
+  KHULNASOFT_PRIVATE_KEY: "/opt/khulnasoft/ssl/key.pem"
+  KHULNASOFT_PUBLIC_KEY: "/opt/khulnasoft/ssl/cert.pem"
+  {{- if .Values.TLS.rootCA_fileName }}
+  KHULNASOFT_ROOT_CA: "/opt/khulnasoft/ssl/ca.pem"
+  {{- end }}
+  KHULNASOFT_TLS_VERIFY: {{ .Values.TLS.tls_verify | quote }}
+  {{- end }}
+  KHULNASOFT_HEALTH_MONITOR_ENABLED: {{ .Values.healthMonitor.enabled | quote }}
+  KHULNASOFT_EXPRESS_MODE: {{ .Values.expressMode | quote }}
+{{- end }}
