@@ -37,7 +37,9 @@ spec:
           name: Pass
           priority: 1
           description: The number of checks that passed
+{% endraw %}
        schema:
+{% raw %}
         openAPIV3Schema:
           x-kubernetes-preserve-unknown-fields: true
           type: object
@@ -50,4 +52,3 @@ spec:
     shortNames:
       - clusterconfigaudit
 {{- end }}
-{% endraw %}
