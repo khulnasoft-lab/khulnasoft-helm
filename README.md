@@ -31,7 +31,7 @@ This repository includes the following charts; they can be deployed separately:
 | [Server](server/)                   | Deploys the Console, Database, and Gateway components; optionally deploys Envoy component                                                                     | 2022.4.26            |
 | [Enforcer](enforcer/)               | Deploys the Khulnasoft Enforcer daemonset                                                                                                                           | 2022.4.24            |
 | [Scanner](scanner/)                 | Deploys the Khulnasoft Scanner deployment                                                                                                                           | 2022.4.10            |
-| [KubeEnforcer](kube-enforcer/)      | Deploys Khulnasoft KubeEnforcer                                                                                                                                     | 2022.4.55            |
+| [KubeEnforcer](kube-enforcer/)      | Deploys KhulnaSoft KubeEnforcer                                                                                                                                     | 2022.4.55            |
 | [Gateway](gateway)                  | Deploys the Khulnasoft Standalone Gateway                                                                                                                           | 2022.4.14            |
 | [Tenant-Manager](tenant-manager/)   | Deploys the Khulnasoft Tenant Manager                                                                                                                               | 2022.4.0             |
 | [Cyber Center](cyber-center/)       | Deploys Khulnasoft CyberCenter offline for air-gap environment                                                                                                      | 2022.4.6             |
@@ -82,7 +82,7 @@ khulnasoft-helm/codesec-agent         1.2.11          2022.4          A Helm cha
 khulnasoft-helm/cloud-connector       2022.4.4        2022.4          A Helm chart for Khulnasoft Cloud-Connector
 khulnasoft-helm/cyber-center          2022.4.6        2022.4          A Helm chart for Khulnasoft CyberCenter
 khulnasoft-helm/enforcer              2022.4.24       2022.4          A Helm chart for the Khulnasoft Enforcer
-khulnasoft-helm/kube-enforcer         2022.4.55       2022.4          A Helm chart for the Khulnasoft KubeEnforcer Starboard
+khulnasoft-helm/kube-enforcer         2022.4.55       2022.4          A Helm chart for the KhulnaSoft KubeEnforcer Starboard
 khulnasoft-helm/gateway               2022.4.14       2022.4          A Helm chart for the Khulnasoft Gateway
 khulnasoft-helm/scanner               2022.4.10       2022.4          A Helm chart for the Khulnasoft Scanner CLI component
 khulnasoft-helm/server                2022.4.26       2022.4          A Helm chart for the Khulnasoft Console components

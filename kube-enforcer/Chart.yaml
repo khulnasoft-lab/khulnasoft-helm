@@ -1,6 +1,6 @@
 apiVersion: v2
 appVersion: "2022.4"
-description: A Helm chart for the Khulnasoft KubeEnforcer
+description: A Helm chart for the KhulnaSoft KubeEnforcer
 name: kube-enforcer
 version: "2022.4.55"
 dependencies:
