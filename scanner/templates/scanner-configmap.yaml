@@ -9,7 +9,11 @@ metadata:
     khulnasoft.component: scanner
 {{ include "khulnasoft.labels" . | indent 4 }}
 data:
-  SCALOCK_LOG_LEVEL: {{ .Values.logLevel | default "INFO" }}  
+  SCALOCK_LOG_LEVEL: {{ .Values.logLevel | default "INFO" }}
+  {{- if .Values.enableLivenessProbe }}
+  KHULNASOFT_HEALTH_MONITOR_ENABLED: "true"
+  KHULNASOFT_HEALTH_MONITOR_PORT: {{ .Values.livenessProbe.httpGet.port | quote }}
+  {{- end }}
   {{- if .Values.cyberCenter.mtls.enabled }}
   KHULNASOFT_PRIVATE_KEY: "/opt/khulnasoft/ssl/key.pem"
   KHULNASOFT_PUBLIC_KEY: "/opt/khulnasoft/ssl/cert.pem"

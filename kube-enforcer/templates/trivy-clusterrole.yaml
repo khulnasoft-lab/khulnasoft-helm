@@ -1,9 +1,9 @@
 ---
-{{- if .Values.tunnel.enabled }}
+{{- if .Values.trivy.enabled }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ .Values.tunnel.appName }}
+  name: {{ .Values.trivy.appName }}
 rules:
   - apiGroups:
       - ""
@@ -109,7 +109,7 @@ rules:
       - list
       - watch
   - apiGroups:
-      - khulnasoft.github.io
+      - khulnasoft-lab.github.io
     resources:
       - clusterconfigauditreports
     verbs:
@@ -121,7 +121,7 @@ rules:
       - update
       - watch
   - apiGroups:
-      - khulnasoft.github.io
+      - khulnasoft-lab.github.io
     resources:
       - clusterrbacassessmentreports
     verbs:
@@ -133,7 +133,7 @@ rules:
       - update
       - watch
   - apiGroups:
-      - khulnasoft.github.io
+      - khulnasoft-lab.github.io
     resources:
       - configauditreports
     verbs:
@@ -145,7 +145,7 @@ rules:
       - update
       - watch
   - apiGroups:
-      - khulnasoft.github.io
+      - khulnasoft-lab.github.io
     resources:
       - rbacassessmentreports
     verbs:

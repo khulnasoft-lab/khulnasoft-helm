@@ -19,8 +19,7 @@ serviceaccount:
 replicaCount: 1
 
 image:
-  # for CC premium change repository to "cc-premium"
-  repository: "cc-standard"
+  repository: "cc-premium"
   tag: "latest"
   pullPolicy: Always
 
@@ -44,11 +43,17 @@ resources: {}
   #   cpu: 2000m
   #   memory: 2Gi
 
+securityContext:
+  runAsUser: 11431
+  runAsGroup: 11433
+  fsGroup: 11433
+
 tolerations: []
-securityContext: {}
 container_securityContext: {}
+deploymentAnnotations: {}
+  # my-annotation-key: my value; more value
 podAnnotations: {}
-  #  my-annotation-key: my value; more value
+  # my-annotation-key: my value; more value
 nodeSelector: {}
 affinity: {}
 
@@ -63,3 +68,17 @@ TLS:
   privateKey_fileName: ""
   # provide filename of the rootCA, if using self-signed certificates eg: rootCA.crt
   rootCA_fileName: ""
+
+  # extraEnvironmentVars is a list of extra environment variables to set in the Offline CyberCenter deployment.
+  extraEnvironmentVars: {}
+    # http_proxy: < >
+    # https_proxy: < >
+    # no_proxy: < >
+    # ENV_NAME: value
+
+
+  # These variables take value from existing Secret objects.
+  extraSecretEnvironmentVars: []
+    # - envName: ENV_NAME
+    #   secretName: name
+    #   secretKey: key

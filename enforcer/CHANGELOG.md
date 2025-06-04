@@ -1,20 +1,34 @@
 # Changelog
 All notable changes to this project will be documented in this file.
-
+## 2022.4.24 ( Sep 26th, 2024 )
+* SLK-88616 - Adding varLibPath based on values entry - PR[#929](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/929)
+## 2022.4.23 ( Sep 26th, 2024 )
+* SLK-80942 - Amend helm values file for the Enforcer deployment on Windows - PR[#894](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/894)
+## 2022.4.22 ( Apr 30th, 2024 )
+* SLK-79144 - Support gke-autopilot platform
+## 2022.4.21 ( Apr 3rd, 2024 )
+* SLK-77315 - Support AKS 1.28
+## 2022.4.20 ( Jan 8th, 2024 )
+* SLK-73499 - Add robustness to removal of windows-enforcer
+## 2022.4.19 ( Jan 3rd, 2024 )
+* SLK-76863 - Support Security Context at Pod Level
+## 2022.4.18 ( Dec 10th, 2023 )
+### ⚠ BREAKING CHANGES
+* SLK-68752 - Change dnsNdots to global value
 ## 2022.4.17 ( Oct 31st, 2023 )
-* SLK-73499 - Add robustness to removal of windows-enforcer - PR[#797](https://github.com/khulnasoft/khulnasoft-helm/pull/797)
+* SLK-73499 - Add robustness to removal of windows-enforcer - PR[#797](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/797)
 ## 2022.4.16 ( Sep 21st, 2023 )
 * Fix PodSecurityPolicies privileged
 ## 2022.4.15 ( Jun 27th, 2023 )
-* Remove double sections in windows-enforcer template - PR[#772](https://github.com/khulnasoft/khulnasoft-helm/pull/772)
+* Remove double sections in windows-enforcer template - PR[#772](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/772)
 ## 2022.4.14 ( Jun 27th, 2023 )
 * Add windows enforcer support
 ## 2022.4.13 ( Apr 20th, 2023 )
-* Increase enforcer memory limit in lightning to allow AMP - PR[#741](https://github.com/khulnasoft/khulnasoft-helm/pull/741)
+* Increase enforcer memory limit in lightning to allow AMP - PR[#741](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/741)
 ## 2022.4.12 ( Apr 10th, 2023 )
-* Adjust default resource requests and limits - PR[#729](https://github.com/khulnasoft/khulnasoft-helm/pull/729)
+* Adjust default resource requests and limits - PR[#729](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/729)
 ## 2022.4.11 ( Mar 22nd, 2023 )
-* Update tolerations [723](https://github.com/khulnasoft/khulnasoft-helm/issues/723)
+* Update tolerations [723](https://github.com/khulnasoft-lab/khulnasoft-helm/issues/723)
 ## 2022.4.10 ( Feb 13th, 2023 )
 * Update agent resource limits definition
 ## 2022.4.9 ( Nov 27th, 2022 )
@@ -25,7 +39,7 @@ All notable changes to this project will be documented in this file.
 * Change volume mount for tkg (SLK-58184)
 ## 2022.4.7 ( Nov 20th, 2022 )
 * Added support for Ndots DNS configuration.
-* Fix PodSecurityPolicy #[666](https://github.com/khulnasoft/khulnasoft-helm/pull/666/)
+* Fix PodSecurityPolicy #[666](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/666/)
 ## 2022.4.6 ( Jul 11th, 2022 )
 * Add multi container engine support for different TKGi versions based only on platform choice
 ## 2022.4.5 ( Jul 6th, 2022 )
@@ -37,7 +51,7 @@ All notable changes to this project will be documented in this file.
 ## 2002.4.2 ( May 18th, 2022 )
 * Rename RoleBinding to ClusterRole vmware-system-privileged if platform=tkg
 ## 2022.4.1 (May 5th, 2022)
-* fix issue #[581](https://github.com/khulnasoft/khulnasoft-helm/issues/581) of duplicate hostPID parameter
+* fix issue #[581](https://github.com/khulnasoft-lab/khulnasoft-helm/issues/581) of duplicate hostPID parameter
 ## 2022.4.0 ( Apr 5th, 2022)
 * Init commit
 * Add new variable `expressMode`, default value is `false`

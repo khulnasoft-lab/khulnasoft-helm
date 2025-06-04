@@ -63,6 +63,14 @@ Else if .Values.serviceAccount.create set to true, so will becreate serviceAccou
 {{- end -}}
 {{- end -}}
 
+{{- define "starboardPriorityClass" -}}
+{{- if .Values.starboard.priorityClass.create -}}
+    {{ .Values.starboard.priorityClass.name | default (printf "%s-starboard-priority-class" .Release.Name) }}
+{{- else if not .Values.starboard.priorityClass.create -}}
+    {{ .Values.starboard.priorityClass.name | default (printf "%s-starboard-priority-class" .Release.Name) }}
+{{- end -}}
+{{- end -}}
+
 {{/*
 Create chart name and version as used by the chart label.
 */}}
@@ -71,7 +79,7 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{- define "imagePullSecret" }}
-{{- printf "{\"auths\": {\"%s\": {\"auth\": \"%s\"}}}" (required "A valid .Values.global.imageCredentials.registry entry required" .Values.global.imageCredentials.registry) (printf "%s:%s" (required "A valid .Values.global.imageCredentials.username entry required" .Values.global.imageCredentials.username) (required "A valid .Values.global.imageCredentials.password entry required" .Values.global.imageCredentials.password) | b64enc) | b64enc }}
+{{- printf "{\"auths\": {\"%s\": {\"auth\": \"%s\"}}}" (required "A valid .Values.global.imageCredentials.registry entry required" .Values.global.imageCredentials.registry) (printf "%s:%s" (default "A valid .Values.global.imageCredentials.username entry" .Values.global.imageCredentials.username) (default "A valid .Values.global.imageCredentials.password entry" .Values.global.imageCredentials.password) | b64enc) | b64enc }}
 {{- end }}
 
 {{- define "serverCertificate" }}
@@ -94,13 +102,11 @@ Create chart name and version as used by the chart label.
 {{- printf "%s" (required "A valid .Values.global.imageCredentials.name required" .Values.global.imageCredentials.name ) }}
 {{- end }}
 
-{{/*
 {{- define "platform" }}
-{{- printf "%s" (required "A valid Values.global.platform entry required" .Values.global.platform ) | replace "\n" "" }}
+{{- $platform := .Values.global.platform }}
+{{- if not $platform }}
+{{-   fail "A valid .Values.global.platform entry is required.\nPlease provide one of the following options: aks, eks, gke, openshift, tkg, tkgi, k8s, rancher, gs, k3s, mke" }}
 {{- end }}
-*/}}
-{{- define "platform" }}
-{{- printf "%s" .Values.global.platform | default "k8s" }}
 {{- end }}
 
 {{/*
@@ -158,10 +164,10 @@ Inject extra environment populated by secrets, if populated
 {{- end -}}
 {{- end -}}
 
-{{- define "serviceAccountTunnel" -}}
-{{- if .Values.tunnel.serviceAccount.create -}}
-    {{ .Values.tunnel.serviceAccount.name | default (printf "%s-tunnel-sa" .Release.Name) }}
-{{- else if not .Values.tunnel.serviceAccount.create -}}
-    {{ .Values.tunnel.serviceAccount.name | default (printf "%s-sa" .Release.Name) }}
+{{- define "serviceAccountTrivy" -}}
+{{- if .Values.trivy.serviceAccount.create -}}
+    {{ .Values.trivy.serviceAccount.name | default (printf "%s-trivy-sa" .Release.Name) }}
+{{- else if not .Values.trivy.serviceAccount.create -}}
+    {{ .Values.trivy.serviceAccount.name | default (printf "%s-sa" .Release.Name) }}
 {{- end -}}
 {{- end -}}

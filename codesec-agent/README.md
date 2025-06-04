@@ -74,7 +74,7 @@ In-order to deploy successfully there are mandatory and optional variables for c
 ### Mandatory Variables
 
 | Variable                | Type         | Description                                                                                            | Example                        |
-| ----------------------- | ------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------ |
+|-------------------------|--------------|--------------------------------------------------------------------------------------------------------|--------------------------------|
 | credentials.khulnasoft_key    | String       | The Khulnasoft account api key                                                                               |
 | credentials.khulnasoft_secret | String       | The Khulnasoft account api key secret                                                                        |
 | integration.source      | String(Enum) | The type of the integration (gitlab_server, azure_server, bitbucket_server,jenkins,nexus,jfrog_server) | "gitlab_server"                |
@@ -87,7 +87,7 @@ In-order to deploy successfully there are mandatory and optional variables for c
 ### Optional Variables
 
 | Variable                    | Type    | Description                                                                       | Example                                           | Default |
-| --------------------------- | ------- | --------------------------------------------------------------------------------- | ------------------------------------------------- | ------- |
+|-----------------------------|---------|-----------------------------------------------------------------------------------|---------------------------------------------------|---------|
 | ssl.enabled                 | Boolean | Enable usage of SSL Certificates                                                  |                                                   | false   |
 | ssl.ca                      | String  | The CA file content                                                               |                                                   |         |
 | ssl.cert                    | String  | The Certificate file content                                                      |                                                   |         |

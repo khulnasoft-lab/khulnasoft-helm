@@ -24,11 +24,11 @@ Access the pod you want to debug by executing
   $ kubectl exec --namespace {{ .Release.Namespace }} -ti <NAME OF THE POD> -- bash
 
 For more information about Khulnasoft Kube-Enforcer, you can look over the docs on using:
-https://docs.khulnasoft.com/docs/kubeenforcer
+https://docs.khulnasoft.com/v2022.4/platform/runtime-protection/enforcers/kubeenforcer/
 
 {{- if .Values.global.enforcer.enabled }}
 
 For more information about Khulnasoft Enforcer, you can look over the docs on using:
-https://docs.khulnasoft.com/docs/khulnasoft-enforcer
+https://docs.khulnasoft.com/v2022.4/platform/runtime-protection/enforcers/kubeenforcer/
 {{- end }}
 =======================================================================================

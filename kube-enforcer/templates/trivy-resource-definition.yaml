@@ -1,15 +1,15 @@
 ---
-{{- if .Values.tunnel.enabled }}
+{{- if .Values.trivy.enabled }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: clusterconfigauditreports.khulnasoft.github.io
+  name: clusterconfigauditreports.khulnasoft-lab.github.io
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
   annotations:
-    controller-gen.kubebuilder.io/version: v0.9.2
+    controller-gen.kubebuilder.io/version: v0.10.4
 spec:
-  group: khulnasoft.github.io
+  group: khulnasoft-lab.github.io
   names:
     kind: ClusterConfigAuditReport
     listKind: ClusterConfigAuditReportList
@@ -179,10 +179,10 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.9.2
-  name: clusterrbacassessmentreports.khulnasoft.github.io
+    controller-gen.kubebuilder.io/version: v0.10.4
+  name: clusterrbacassessmentreports.khulnasoft-lab.github.io
 spec:
-  group: khulnasoft.github.io
+  group: khulnasoft-lab.github.io
   names:
     kind: ClusterRbacAssessmentReport
     listKind: ClusterRbacAssessmentReportList
@@ -349,13 +349,13 @@ spec:
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: configauditreports.khulnasoft.github.io
+  name: configauditreports.khulnasoft-lab.github.io
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
   annotations:
-    controller-gen.kubebuilder.io/version: v0.9.2
+    controller-gen.kubebuilder.io/version: v0.10.4
 spec:
-  group: khulnasoft.github.io
+  group: khulnasoft-lab.github.io
   names:
     kind: ConfigAuditReport
     listKind: ConfigAuditReportList
@@ -525,10 +525,10 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.9.2
-  name: rbacassessmentreports.khulnasoft.github.io
+    controller-gen.kubebuilder.io/version: v0.10.4
+  name: rbacassessmentreports.khulnasoft-lab.github.io
 spec:
-  group: khulnasoft.github.io
+  group: khulnasoft-lab.github.io
   names:
     kind: RbacAssessmentReport
     listKind: RbacAssessmentReportList

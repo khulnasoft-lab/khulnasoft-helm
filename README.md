@@ -2,6 +2,7 @@
 
 # Overview
 
+
 This page contains instructions for deploying Khulnasoft Enterprise in a Kubernetes cluster, using the [Helm package manager](https://helm.sh/).
 
 Refer to the Khulnasoft Enterprise product documentation for the broader context: [Kubernetes with Helm Charts](https://docs.khulnasoft.com/v2022.4/docs/kubernetes-with-helm).
@@ -27,16 +28,16 @@ This repository includes the following charts; they can be deployed separately:
 
 | Chart                               | Description                                                                                                                                                   | Latest Chart Version |
 |-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
-| [Server](server/)                   | Deploys the Console, Database, and Gateway components; optionally deploys Envoy component                                                                     | 2022.4.20            |
-| [Enforcer](enforcer/)               | Deploys the Khulnasoft Enforcer daemonset                                                                                                                           | 2022.4.16            |
-| [Scanner](scanner/)                 | Deploys the Khulnasoft Scanner deployment                                                                                                                           | 2022.4.6             |
-| [KubeEnforcer](kube-enforcer/)      | Deploys Khulnasoft KubeEnforcer                                                                                                                                     | 2022.4.32            |
-| [Gateway](gateway)                  | Deploys the Khulnasoft Standalone Gateway                                                                                                                           | 2022.4.12            |
+| [Server](server/)                   | Deploys the Console, Database, and Gateway components; optionally deploys Envoy component                                                                     | 2022.4.26            |
+| [Enforcer](enforcer/)               | Deploys the Khulnasoft Enforcer daemonset                                                                                                                           | 2022.4.24            |
+| [Scanner](scanner/)                 | Deploys the Khulnasoft Scanner deployment                                                                                                                           | 2022.4.10            |
+| [KubeEnforcer](kube-enforcer/)      | Deploys Khulnasoft KubeEnforcer                                                                                                                                     | 2022.4.55            |
+| [Gateway](gateway)                  | Deploys the Khulnasoft Standalone Gateway                                                                                                                           | 2022.4.14            |
 | [Tenant-Manager](tenant-manager/)   | Deploys the Khulnasoft Tenant Manager                                                                                                                               | 2022.4.0             |
-| [Cyber Center](cyber-center/)       | Deploys Khulnasoft CyberCenter offline for air-gap environment                                                                                                      | 2022.4.2             |
-| [Cloud Connector](cloud-connector/) | Deploys the Khulnasoft Cloud Connector                                                                                                                              | 2022.4.4             |
+| [Cyber Center](cyber-center/)       | Deploys Khulnasoft CyberCenter offline for air-gap environment                                                                                                      | 2022.4.6             |
+| [Cloud Connector](cloud-connector/) | Deploys the Khulnasoft Cloud Connector                                                                                                                              | 2022.4.5             |
 | [QuickStart](khulnasoft-quickstart/)      | Not for production use (see [below](#quick-start-deployment-not-for-production-purposes)). Deploys the Console, Database, Gateway and KubeEnforcer components | 2022.4.1             |
-| [Codesec-Agent](codesec-agent/)     | Argon Broker Deployment                                                                                                                                       | 1.2.6                |
+| [Codesec-Agent](codesec-agent/)     | Argon Broker Deployment                                                                                                                                       | 1.2.11               |
 
 # Deployment instructions
 
@@ -77,14 +78,14 @@ helm search repo khulnasoft-helm --version 2022.4
 Example output:
 ```csv
 NAME                            CHART VERSION   APP VERSION     DESCRIPTION
-khulnasoft-helm/codesec-agent         1.2.3           2022.4          A Helm chart for the Argon Broker Deployment
+khulnasoft-helm/codesec-agent         1.2.11          2022.4          A Helm chart for the Argon Broker Deployment
 khulnasoft-helm/cloud-connector       2022.4.4        2022.4          A Helm chart for Khulnasoft Cloud-Connector
-khulnasoft-helm/cyber-center          2022.4.2        2022.4          A Helm chart for Khulnasoft CyberCenter
-khulnasoft-helm/enforcer              2022.4.16       2022.4          A Helm chart for the Khulnasoft Enforcer
-khulnasoft-helm/kube-enforcer         2022.4.32       2022.4          A Helm chart for the Khulnasoft KubeEnforcer Starboard
-khulnasoft-helm/gateway               2022.4.12       2022.4          A Helm chart for the Khulnasoft Gateway
-khulnasoft-helm/scanner               2022.4.6        2022.4          A Helm chart for the Khulnasoft Scanner CLI component
-khulnasoft-helm/server                2022.4.20       2022.4          A Helm chart for the Khulnasoft Console components
+khulnasoft-helm/cyber-center          2022.4.6        2022.4          A Helm chart for Khulnasoft CyberCenter
+khulnasoft-helm/enforcer              2022.4.24       2022.4          A Helm chart for the Khulnasoft Enforcer
+khulnasoft-helm/kube-enforcer         2022.4.55       2022.4          A Helm chart for the Khulnasoft KubeEnforcer Starboard
+khulnasoft-helm/gateway               2022.4.14       2022.4          A Helm chart for the Khulnasoft Gateway
+khulnasoft-helm/scanner               2022.4.10       2022.4          A Helm chart for the Khulnasoft Scanner CLI component
+khulnasoft-helm/server                2022.4.26       2022.4          A Helm chart for the Khulnasoft Console components
 khulnasoft-helm/tenant-manager        2022.4.1        2022.4          A Helm chart for the Khulnasoft Tenant Manager
 ```
 
@@ -208,7 +209,7 @@ Use the [**khulnasoft-quickstart**](khulnasoft-quickstart) chart to
 
 1. Clone the GitHub repository
   ```shell
-  git clone https://github.com/khulnasoft/khulnasoft-helm.git
+  git clone https://github.com/khulnasoft-lab/khulnasoft-helm.git
   cd khulnasoft-helm/
   ```
 

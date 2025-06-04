@@ -154,18 +154,13 @@ For more details please visit [Link](https://docs.khulnasoft.com/docs/kubernetes
 
 Parameter | Description      | Default| Mandatory
 --------- |------------------|--------| ---------
-`imageCredentials.create` | Set if to create new pull image secret| `false`| `YES - New cluster`
-`imageCredentials.name` | Your Docker pull image secret name    | `khulnasoft-registry-secret`| `YES - New cluster`
-`imageCredentials.repositoryUriPrefix` | repository uri prefix for dockerhub set `docker.io`| `registry.khulnasoft.com`| `YES - New cluster`
-`imageCredentials.registry` | set the registry url for dockerhub set `index.docker.io/v1/`| `registry.khulnasoft.com`| `YES - New cluster`
-`imageCredentials.username` | Your Docker registry (DockerHub, etc.) username| `khulnasoft-registry-secret`| `YES - New cluster`
-`imageCredentials.password` | Your Docker registry (DockerHub, etc.) password| `unset`| `YES - New cluster`
 `serviceAccount.create` | enable to create serviceaccount       | `false`| `YES - New cluster`
 `serviceAccount.name` | service acccount name  | `khulnasoft-sa`| `NO`
+`serviceAccount.attachImagePullSecret` | attach image pull secret to created service account? | `true` | `NO`
 `clusterRole.roleRef` | cluster role reference name for cluster rolebinding| `unset`| `NO`
-`platform` | Orchestration platform name (Allowed values are aks, eks, gke, openshift, tkg, tkgi, k8s, rancher, gs, k3s)   | `unset`| `YES`
+`platform` | Orchestration platform name (Allowed values are aks, eks, gke, gke-autopilot, openshift, tkg, tkgi, k8s, rancher, gs, k3s)   | `unset`| `YES`
 `vaultSecret.enable` | Enable to true once you have secrets in vault and annotations are enabled to load enforcer token from hashicorp vault | `false`| `No` |
-`vaultSecret.vaultFilepath` | Change the path to "/vault/secrets/<filename>" as per the setup     | `""`   | `No` |
+`vaultSecret.vaultFilepath` | Change the path to "/vault/secrets/<filename>" as per the setup     | ` `   | `NO`
 `enforcerToken` | enforcer token value   | `enforcer-token`      | `YES` if `enforcerTokenSecretName` is set to null
 `expressMode` | Install enforcer in EXPRESS MODE or not| `false`| `YES`
 `enforcerTokenSecretName` | enforcer token secret name if exists  | `null` | `NO`
@@ -174,12 +169,19 @@ Parameter | Description      | Default| Mandatory
 `nodelName` | Specify the Node Name the Khulnasoft Enforcer will register under. if not specify the name will be `spec.nodeName`  | `unset`| `NO`
 `securityContext.privileged` | determines if any container in a pod can enable privileged mode.    | `false`| `NO`
 `securityContext.capabilities` | Linux capabilities provide a finer grained breakdown of the privileges traditionally associated with the superuser. | `add {}` | `NO`
+`podSecurityContext` | Set Pod Security Context ( see: https://kubernetes.io/docs/tasks/configure-pod-container/security-context ) | `unset` | `NO` 
 `podSecurityPolicy.create` | Enable Pod Security Policies with the required enforcer capabilities| `false`| `NO`
 `podSecurityPolicy.privileged` | Enable privileged permissions to the Enforcer| `true` if podSecurityPolicy.create is `true` | `NO`
+`global.imageCredentials.create` | Set if to create new pull image secret| `false`| `YES - New cluster`
+`global.imageCredentials.name` | Your Docker pull image secret name    | `khulnasoft-registry-secret`| `YES - New cluster`
+`global.imageCredentials.repositoryUriPrefix` | repository uri prefix for dockerhub set `docker.io`| `registry.khulnasoft.com`| `YES - New cluster`
+`global.imageCredentials.registry` | set the registry url for dockerhub set `index.docker.io/v1/`| `registry.khulnasoft.com`| `YES - New cluster`
+`global.imageCredentials.username` | Your Docker registry (DockerHub, etc.) username| `khulnasoft-registry-secret`| `YES - New cluster`
+`global.imageCredentials.password` | Your Docker registry (DockerHub, etc.) password| `unset`| `YES - New cluster`
 `global.gateway.address` | Gateway host address   | `khulnasoft-gateway-svc`    | `YES`
 `global.gateway.port` | Gateway host port| `8443` | `YES`
 `priorityClass.create` | If true priority class will be created| `False`| `NO`
-`priorityClass.name` | Define the name of priority class or default value will be used     | ``     | `NO`
+`priorityClass.name` | Define the name of priority class or default value will be used     | ` ` | `NO`
 `priorityClass.preemptionPolicy` | Preemption policy for priority class  | `PreemptLowerPriority`| `NO`
 `priorityClass.value` | `The integer value of the priority`   | `1000000`| `NO`
 `image.repository` | the docker image name to use | `enforcer`| `YES`
@@ -245,7 +247,7 @@ seLinuxOptions:
 * For Lightning deployment of mixed cluster (windows and linux nodes) use following command:  
 Replace variables in <> with appropriate values
 ```shell
-helm upgrade --install --create-namespace --namespace khulnasoft <cluster_name> khulnasoft-helm/kube-enforcer --set global.gateway.address=<gateway_url>,global.gateway.port=<gateway_port>,certsSecret.autoGenerate=true,global.platform=k8s,global.enforcer.enabled=true,khulnasoftSecret.kubeEnforcerToken=<kube_enforcer_token>,image.tag=<kube_enforcer_image_tag>,enforcer.enforcerToken=<khulnasoft_enforcer_token>,enforcer.image.tag=<khulnasoft_enfocer_image_tag>,serviceAccount.create=true,clusterName=<cluster_name>,global.imageCredentials.create=true,global.imageCredentials.repositoryUriPrefix=registry.khulnasoft.com,global.imageCredentials.registry=registry.khulnasoft.com,global.imageCredentials.username=<khulnasoft_portal_username>,global.imageCredentials.password=<khulnasoft_portal_password>,enforcer.expressMode=true,enforcer.windowsEnforcer.WinLinuxNodes.enable=true,enforcer.windowsEnforcer.enforcerToken=<khulnasoft_enforcer_token>,enforcer.windowsEnforcer.tag=<windows_enforcer_image_tag>,extraEnvironmentVars.KHULNASOFT_DISABLE_KUBE_BENCH_SCAN=true --set-json 'enforcer.nodeSelector={"kubernetes.io/os": "linux"}','enforcer.windowsEnforcer.nodeSelector={"kubernetes.io/os": "windows"}','nodeSelector={"kubernetes.io/os": "linux"}','tunnel.nodeSelector={"kubernetes.io/os": "linux"}' 
+helm upgrade --install --create-namespace --namespace khulnasoft <cluster_name> khulnasoft-helm/kube-enforcer --set global.gateway.address=<gateway_url>,global.gateway.port=<gateway_port>,certsSecret.autoGenerate=true,global.platform=k8s,global.enforcer.enabled=true,khulnasoftSecret.kubeEnforcerToken=<kube_enforcer_token>,image.tag=<kube_enforcer_image_tag>,enforcer.enforcerToken=<khulnasoft_enforcer_token>,enforcer.image.tag=<khulnasoft_enfocer_image_tag>,serviceAccount.create=true,clusterName=<cluster_name>,global.imageCredentials.create=true,global.imageCredentials.repositoryUriPrefix=registry.khulnasoft.com,global.imageCredentials.registry=registry.khulnasoft.com,global.imageCredentials.username=<khulnasoft_portal_username>,global.imageCredentials.password=<khulnasoft_portal_password>,enforcer.expressMode=true,enforcer.windowsEnforcer.WinLinuxNodes.enable=true,enforcer.windowsEnforcer.enforcerToken=<khulnasoft_enforcer_token>,enforcer.windowsEnforcer.tag=<windows_enforcer_image_tag>,extraEnvironmentVars.KHULNASOFT_DISABLE_KUBE_BENCH_SCAN=true --set-json 'enforcer.nodeSelector={"kubernetes.io/os": "linux"}','enforcer.windowsEnforcer.nodeSelector={"kubernetes.io/os": "windows"}','nodeSelector={"kubernetes.io/os": "linux"}','trivy.nodeSelector={"kubernetes.io/os": "linux"}' 
 ```
 
 ## Issues and feedback

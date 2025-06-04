@@ -8,7 +8,7 @@ Installation is simple, as Cloud Native apps should be! There is a minimum pre-r
 kubectl create namespace khulnasoft-security
 ```
 
-Once you have created a namespace to install into, navigate to the [Khulnasoft Security GCP marketplace offer.](https://www.google.com/url?q=https://console.cloud.google.com/marketplace/details/khulnasoft-public/khulnasoft-container-security).
+Once you have created a namespace to install into, navigate to the [Khulnasoft Security GCP marketplace offer.](https://www.google.com/url?q=https://console.cloud.google.com/marketplace/details/khulnasoft-lab-public/khulnasoft-container-security).
 
 Click configure, selecting the cluster, billing plan and namespace which you just created.
 Now be patient as the deployment takes approximately three minutes.

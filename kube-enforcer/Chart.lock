@@ -1,6 +1,6 @@
 dependencies:
 - name: enforcer
-  repository: file://../enforcer/
-  version: 2022.4.13
-digest: sha256:20828aa6ebde24d43534b355ed4e9ff264ce8d65d203e6ac33c8cb771e3f4cd3
-generated: "2023-04-20T12:39:25.256157+03:00"
+  repository: https://helm.khulnasoft.com
+  version: 2022.4.24
+digest: sha256:06c3b6e08e8dfb9c1f68a45b1c066ac4683924d76c4e2b648691a896285b7a10
+generated: "2024-10-17T18:31:19.560975+03:00"

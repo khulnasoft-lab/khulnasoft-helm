@@ -15,7 +15,12 @@ data:
   {{- else }}
   KHULNASOFT_SERVER: {{ .Values.global.gateway.address | default "khulnasoft-gateway-svc" }}:{{ .Values.global.gateway.port | default "8443" }}
   {{- end }}
+  {{- if eq .Values.global.platform "gke-autopilot" }}
+  KHULNASOFT_INSTALL_PATH: "/var/autopilot/addon/khulnasoft"
+  KHULNASOFT_PRODUCT_PATH: "/var/autopilot/addon/khulnasoft"
+  {{- else }}
   KHULNASOFT_INSTALL_PATH: "/var/lib/khulnasoft"
+  {{- end }}
   {{- if .Values.hostRunPath }}
   KHULNASOFT_HOST_RUN_PATH: {{ .Values.hostRunPath | quote }}
   {{- end }}

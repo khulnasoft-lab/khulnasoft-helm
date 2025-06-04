@@ -1,17 +1,44 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2022.4.27 (Oct 15th, 2024)
+* wrap KHULNASOFT_PUBSUB_DBPASSWORD env var with if statement of active-active cluster enabled env variable in job-check-db-upgrade job (SLK-86284)
+
+## 2022.4.26 (Jul 29th, 2024)
+* Fix 'volumes' & 'volumeMounts' indentation in job-check-db-upgrade job (SLK-83783)
+* Add KHULNASOFT_PUBSUB_DBPASSWORD env variable in job-check-db-upgrade job (SLK-84299)
+
+## 2022.4.25 (Jul 26th, 2024)
+* Fix indentation and formatting for external DB - [#790](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/790)
+
+## 2022.4.24 (Apr 16th, 2024)
+* Fixed a bug in the database password value references, that linked to wrong, non exitend values
+* Fixed some typos and formatting style related aspects
+
+## 2022.4.23 (Dec 24th, 2023)
+* Add support for ArgoCD deployment - [#799](https://github.com/khulnasoft-lab/khulnasoft-helm/issues/799)
+* Immutable Secrets - Preventing changes to the data of an existing Secret (DB)
+
+## 2022.4.22 (Dec 10th, 2023)
+* Fix indentation and formatting for external DB - [#790](https://github.com/khulnasoft-lab/khulnasoft-helm/issues/790) 
+* Fix envoy configuration
+
+## 2022.4.21 (Dec 5 th, 2023)
+* Allow the API version of PodDisruptionBudget to be overridden [#807](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/807)
+
 ## 2022.4.20 (Nov 9th, 2023)
 * Fix db crashing during the helm upgrade
 
 ## 2022.4.19 (Sep 21st, 2023)
 * Update pre-upgrade hook to support mtls with external DB
-* Update server deployment for extra volumes / volumemounts - PR[#776](https://github.com/khulnasoft/khulnasoft-helm/pull/776)
+* Update server deployment for extra volumes / volumemounts - PR[#776](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/776)
 
 ## 2022.4.18 (Jun 30th, 2023)
 * Fix openshift scc
+
 ## 2022.4.17 (Jun 27th, 2023)
 * Add vault agent injection support for db secrets
+
 ## 2022.4.16 (May 28, 2023)
 * Add support for external web secret
 
@@ -22,7 +49,7 @@ All notable changes to this project will be documented in this file.
 * Fix API version check for ingress
 
 ## 2022.4.14 (Apr 10th, 2023)
-* Add securitycontext for job check-db-upgrade - Issue [#726](https://github.com/khulnasoft/khulnasoft-helm/issues/726)
+* Add securitycontext for job check-db-upgrade - Issue [#726](https://github.com/khulnasoft-lab/khulnasoft-helm/issues/726)
 * Update gateway chart version to `2022.4.12`
 
 ## 2022.4.13 (Mar 6th, 2023)
@@ -51,18 +78,18 @@ All notable changes to this project will be documented in this file.
 * Add support to switch rbac creation in server chart
 
 ## 2022.4.5 (Aug 22nd, 2022)
-* Fix gateway serviceaccount naming in custom namespace deployment - PR [#641](https://github.com/khulnasoft/khulnasoft-helm/pull/641)
+* Fix gateway serviceaccount naming in custom namespace deployment - PR [#641](https://github.com/khulnasoft-lab/khulnasoft-helm/pull/641)
 
 ## 2022.4.4 ( Aug 12th, 2022)
 * Fix mTLS config between external DB and server/gateway
 * Update documentation
 
 ## 2022.4.3 ( Jul 6th, 2022 )
-* Support to load to db certs for external DB - PR fix [#493](https://github.com/khulnasoft/khulnasoft-helm/issues/493)
+* Support to load to db certs for external DB - PR fix [#493](https://github.com/khulnasoft-lab/khulnasoft-helm/issues/493)
 
 ## 2022.4.2 ( June 8th, 2022 )
-* Add PSP support in rbac for backward compatibility - issue [#606](https://github.com/khulnasoft/khulnasoft-helm/issues/606)
-* Fix hard-coded serviceaccount name to dynamic - issue [#605](https://github.com/khulnasoft/khulnasoft-helm/issues/605)
+* Add PSP support in rbac for backward compatibility - issue [#606](https://github.com/khulnasoft-lab/khulnasoft-helm/issues/606)
+* Fix hard-coded serviceaccount name to dynamic - issue [#605](https://github.com/khulnasoft-lab/khulnasoft-helm/issues/605)
 
 ## 2022.4.1 ( May 18th, 2022 )
 * Rename RoleBinding to ClusterRole vmware-system-privileged if platform=tkg

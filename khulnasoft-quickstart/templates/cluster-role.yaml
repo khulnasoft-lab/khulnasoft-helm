@@ -9,7 +9,7 @@ rules:
   - apiGroups: [ "*" ]
     resources: [ "secrets" ]
     verbs: [ "get", "list", "watch", "update", "create", "delete" ]
-  - apiGroups: ["khulnasoft.github.io"]
+  - apiGroups: ["khulnasoft-lab.github.io"]
     resources: ["configauditreports", "clusterconfigauditreports"]
     verbs: ["get", "list", "watch"]
   - apiGroups: ["*"]
@@ -132,7 +132,7 @@ rules:
       - create
       - delete
   - apiGroups:
-      - khulnasoft.github.io
+      - khulnasoft-lab.github.io
     resources:
       - vulnerabilityreports
       - configauditreports

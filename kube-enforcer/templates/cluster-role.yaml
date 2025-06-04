@@ -11,19 +11,43 @@ rules:
   - apiGroups: ["*"]
     resources: ["pods", "nodes", "namespaces", "deployments", "jobs", "cronjobs", "daemonsets", "replicasets", "replicationcontrollers", "statefulsets", "clusterroles", "clusterrolebindings", "componentstatuses", "services" ]
     verbs: ["get", "list", "watch"]
-  - apiGroups: ["khulnasoft.github.io"]
+  - apiGroups: ["khulnasoft-lab.github.io"]
     resources: ["configauditreports", "clusterconfigauditreports"]
     verbs: ["get", "list", "watch"]
   - apiGroups: ["*"]
     resources: ["configmaps"]
     verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: [ "serviceaccounts" ]
+    verbs: [ "get","list","watch" ]
   {{- if eq .Values.global.platform "openshift"}}
   - apiGroups: ["operator.openshift.io"]
-    resources: ["imagecontentsourcepolicies"]
+    resources: ["imagecontentsourcepolicies", "openshiftapiservers", "kubeapiservers"]
     verbs: ["get", "list", "watch"]
   - apiGroups: [ "apps.openshift.io" ]
     resources: [ "deploymentconfigs" ]
     verbs: [ "get", "list", "watch" ]
+  - apiGroups: ["*"]
+    resources: ["pods","namespaces"]
+    verbs: ["create", "delete"]
+  - apiGroups: [""]
+    resources: ["pods/exec"]
+    verbs: ["create"]
+  - apiGroups: [ "" ]
+    resources: [ "endpoints" ]
+    verbs: [ "list" ]
+  - apiGroups: [ "config.openshift.io" ]
+    resources: [ "clusteroperators" ]
+    verbs: [ "get", "list" ]
+  - apiGroups: ["security.openshift.io"]
+    resources: ["securitycontextconstraints"]
+    verbs: ["get", "list"]
+  - apiGroups: ["machineconfiguration.openshift.io"]
+    resources: ["machineconfigs", "machineconfigpools"]
+    verbs: ["get", "list"]
+  - apiGroups: [""]
+    resources: [ "pods/log" ]
+    verbs: [ "get" ]
   {{- end }}
   - apiGroups:
       - "*"
@@ -154,7 +178,7 @@ rules:
       - list
       - watch
   - apiGroups:
-      - khulnasoft.github.io
+      - khulnasoft-lab.github.io
     resources:
       - vulnerabilityreports
       - configauditreports

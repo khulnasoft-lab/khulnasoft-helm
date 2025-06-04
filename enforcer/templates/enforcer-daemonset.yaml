@@ -46,16 +46,18 @@ spec:
         {{ include "khulnasoft.labels" . | nindent 8 }}
       name: {{ .Release.Name }}-ds
     spec:
-      {{- if .Values.dnsNdots }}
+      {{- if .Values.global.dnsNdots }}
       dnsConfig:
         options:
           - name: ndots
-            value: {{ .Values.dnsNdots | quote }}
+            value: {{ .Values.global.dnsNdots | quote }}
       {{- end }}
       {{- if or .Values.priorityClass.create .Values.priorityClass.name }}
       priorityClassName: {{ template "priorityClass" . }}
       {{- end }}
       serviceAccount: {{ template "agentServiceAccount" . }}
+      securityContext: 
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
       - name: enforcer
         image: "{{ .Values.global.imageCredentials.repositoryUriPrefix }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -148,7 +150,7 @@ spec:
           name: khulnasoft-audit
         - mountPath: /data
           name: khulnasoft-data
-        - mountPath: /var/lib/containers
+        - mountPath: {{ template "varLibPrefix" . }}/containers
           name: containers
         {{- if .Values.healthMonitor.enabled }}
         {{- with .Values.livenessProbe }}
@@ -218,22 +220,22 @@ spec:
           type: ""
       - name: khulnasoft
         hostPath:
-          path: /var/lib/khulnasoft
+          path: {{ template "varLibPrefix" . }}/khulnasoft
           type: ""
       - name: khulnasoft-tmp
         hostPath:
-          path: /var/lib/khulnasoft/tmp
+          path: {{ template "varLibPrefix" . }}/khulnasoft/tmp
           type: ""
       - name: khulnasoft-audit
         hostPath:
-          path: /var/lib/khulnasoft/audit
+          path: {{ template "varLibPrefix" . }}/khulnasoft/audit
       - name: khulnasoft-data
         hostPath:
-          path: /var/lib/khulnasoft/data
+          path: {{ template "varLibPrefix" . }}/khulnasoft/data
           type: ""
       - name: containers
         hostPath:
-          path: /var/lib/containers
+          path: {{ template "varLibPrefix" . }}/containers
           type: ""
 
       {{- if .Values.hostRunPath }}

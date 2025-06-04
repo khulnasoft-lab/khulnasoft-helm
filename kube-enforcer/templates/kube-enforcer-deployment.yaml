@@ -35,11 +35,12 @@ spec:
         {{- end }}
 {{ include "khulnasoft.labels" . | indent 8 }}
     spec:
-      {{- if .Values.dnsNdots }}
+      hostNetwork: {{ .Values.hostNetwork }}
+      {{- if .Values.global.dnsNdots }}
       dnsConfig:
         options:
           - name: ndots
-            value: {{ int .Values.dnsNdots | quote }}
+            value: {{ int .Values.global.dnsNdots | quote }}
       {{- end }}
       {{- with .Values.securityContext }}
       securityContext:
