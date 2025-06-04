@@ -1,5 +1,5 @@
 
-Thank you for installing Khulnasoft Security Quick Start Chart.
+Thank you for installing KhulnaSoft Security Quick Start Chart.
 
 You can take a look on Khulnasoft Documentation
 https://docs.khulnasoft.com/docs

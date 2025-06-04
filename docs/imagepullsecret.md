@@ -1,6 +1,6 @@
 # Container registry credentials
 
-Khulnasoft Security components docker images are available in our private repository, which requires authentication. By default, the charts create a secret based on the values.yaml file.
+KhulnaSoft Security components docker images are available in our private repository, which requires authentication. By default, the charts create a secret based on the values.yaml file.
 
 1. Create a new namespace named `khulnasoft`:
 

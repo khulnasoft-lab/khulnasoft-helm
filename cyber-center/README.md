@@ -1,12 +1,12 @@
 <img src="https://avatars3.githubusercontent.com/u/43526139?s=200&v=4" height="100" width="100" /><img src="https://avatars3.githubusercontent.com/u/15859888?s=200&v=4" width="100" height="100"/>
 
-# Khulnasoft Security CyberCenter Helm Chart
+# KhulnaSoft Security CyberCenter Helm Chart
 
-These are Helm charts for installing and maintaining the Khulnasoft Security CyberCenter.
+These are Helm charts for installing and maintaining the KhulnaSoft Security CyberCenter.
 
 ## Contents
 
-- [Khulnasoft Security CyberCenter Helm Chart](#khulnasoft-security-cybercenter-helm-chart)
+- [KhulnaSoft Security CyberCenter Helm Chart](#khulnasoft-security-cybercenter-helm-chart)
   - [Contents](#contents)
   - [Prerequisites](#prerequisites)
     - [Container Registry Credentials](#container-registry-credentials)

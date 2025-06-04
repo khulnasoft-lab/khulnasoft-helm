@@ -1,11 +1,11 @@
 <img src="https://avatars3.githubusercontent.com/u/43526139?s=200&v=4" height="100" width="100" /><img src="https://avatars3.githubusercontent.com/u/15859888?s=200&v=4" width="100" height="100"/>
 
-# Khulnasoft Security Tenant Manager Helm Chart
+# KhulnaSoft Security Tenant Manager Helm Chart
 
 These are Helm charts for the deployment and maintenance of the Khulnasoft Tenant Manager.
 ## Contents
 
-- [Khulnasoft Security Tenant Manager Helm Chart](#khulnasoft-security-tenant-manager-helm-chart)
+- [KhulnaSoft Security Tenant Manager Helm Chart](#khulnasoft-security-tenant-manager-helm-chart)
   - [Contents](#contents)
   - [Prerequisites](#prerequisites)
     - [Container registry credentials](#container-registry-credentials)
@@ -26,7 +26,7 @@ See [Container registry credentials](../docs/imagepullsecret.md).
 
 ### PostgreSQL database
 
-Khulnasoft Security recommends implementing a highly-available PostgreSQL database. By default, the Tenant Manager chart will install a PostgreSQL database and attach it to persistent storage for POC usage and testing. For production use, you can override this default behavior and specify an existing PostgreSQL database by setting the following variables in values.yaml:
+KhulnaSoft Security recommends implementing a highly-available PostgreSQL database. By default, the Tenant Manager chart will install a PostgreSQL database and attach it to persistent storage for POC usage and testing. For production use, you can override this default behavior and specify an existing PostgreSQL database by setting the following variables in values.yaml:
 
 ```yaml
 db:

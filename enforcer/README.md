@@ -1,12 +1,12 @@
 <img src="https://avatars3.githubusercontent.com/u/43526139?s=200&v=4" height="100" width="100" /><img src="https://avatars3.githubusercontent.com/u/15859888?s=200&v=4" width="100" height="100"/>
 
-# Khulnasoft Security Enforcer Helm Chart
+# KhulnaSoft Security Enforcer Helm Chart
 
 These are Helm charts for installation and maintenance of Khulnasoft Container Security Enforcer
 
 ## Contents
 
-- [Khulnasoft Security Enforcer Helm Chart](#khulnasoft-security-enforcer-helm-chart)
+- [KhulnaSoft Security Enforcer Helm Chart](#khulnasoft-security-enforcer-helm-chart)
   - [Contents](#contents)
   - [Prerequisites](#prerequisites)
     - [Container Registry Credentials](#container-registry-credentials)

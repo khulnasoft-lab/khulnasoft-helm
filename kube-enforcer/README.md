@@ -31,7 +31,7 @@ This page provides instructions for using Helm charts to configure and deploy th
 
 ## Starboard
 
-Starboard is an Khulnasoft Security open-source tool that increases the effectiveness of Kubernetes security. For this reason, Starboard is deployed by default when you deploy KubeEnforcers.
+Starboard is an KhulnaSoft Security open-source tool that increases the effectiveness of Kubernetes security. For this reason, Starboard is deployed by default when you deploy KubeEnforcers.
 
 > :exclamation: Starboard supported from Kubernetes v1.19.x. Starboard will not be deployed on earlier versions of Kubernetes
 

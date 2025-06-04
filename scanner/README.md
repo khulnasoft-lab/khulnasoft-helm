@@ -1,12 +1,12 @@
 <img src="https://avatars3.githubusercontent.com/u/43526139?s=200&v=4" height="100" width="100" /><img src="https://avatars3.githubusercontent.com/u/15859888?s=200&v=4" width="100" height="100"/>
 
-# Khulnasoft Security Scanner Helm Chart
+# KhulnaSoft Security Scanner Helm Chart
 
 These are Helm charts for installation and maintenance of Khulnasoft Container Security Platform Scanner CLI.
 
 ## Contents
 
-- [Khulnasoft Security Scanner Helm Chart](#khulnasoft-security-scanner-helm-chart)
+- [KhulnaSoft Security Scanner Helm Chart](#khulnasoft-security-scanner-helm-chart)
   - [Contents](#contents)
   - [Prerequisites](#prerequisites)
     - [Container Registry Credentials](#container-registry-credentials)

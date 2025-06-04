@@ -1,6 +1,6 @@
 <img src="https://avatars3.githubusercontent.com/u/43526139?s=200&v=4" height="100" width="100" /><img src="https://avatars3.githubusercontent.com/u/15859888?s=200&v=4" width="100" height="100"/>
 
-# Khulnasoft Security Codesec Agent Helm Chart
+# KhulnaSoft Security Codesec Agent Helm Chart
 
 _Protect your Software Supply Chain._
 
@@ -8,7 +8,7 @@ _Protect your Software Supply Chain._
 
 ## Contents
 
-- [Khulnasoft Security Codesec Agent Helm Chart](#khulnasoft-security-codesec-agent-helm-chart)
+- [KhulnaSoft Security Codesec Agent Helm Chart](#khulnasoft-security-codesec-agent-helm-chart)
   - [Contents](#contents)
   - [Prerequisites and limitations](#prerequisites-and-limitations)
   - [Installing the chart](#installing-the-chart)

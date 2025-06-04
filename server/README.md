@@ -1,12 +1,12 @@
 <img src="https://avatars3.githubusercontent.com/u/43526139?s=200&v=4" height="100" width="100" /><img src="https://avatars3.githubusercontent.com/u/15859888?s=200&v=4" width="100" height="100"/>
 
-# Khulnasoft Security Server Helm Chart
+# KhulnaSoft Security Server Helm Chart
 
 These are Helm charts for installation and maintenance of Khulnasoft Container Security Platform: Console Server, Gateway & Database.
 
 ## Contents
 
-- [Khulnasoft Security Server Helm Chart](#khulnasoft-security-server-helm-chart)
+- [KhulnaSoft Security Server Helm Chart](#khulnasoft-security-server-helm-chart)
     - [Prerequisites](#prerequisites)
         - [Container Registry Credentials](#container-registry-credentials)
         - [Service Account](#service-account)
@@ -60,7 +60,7 @@ There are 3 scenarios for the service account usage:
 
 ### PostgreSQL database
 
-Khulnasoft Security recommends implementing a highly-available PostgreSQL database. By default, the console chart will install
+KhulnaSoft Security recommends implementing a highly-available PostgreSQL database. By default, the console chart will install
 a PostgreSQL database and attach it to persistent storage for POC usage and testing. For production use, one may
 override this default behavior and specify an existing PostgreSQL database by setting the following variables in
 values.yaml:

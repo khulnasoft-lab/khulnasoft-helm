@@ -1,6 +1,6 @@
 # Khulnasoft Container Security Platform (CSP) for GCP Marketplace
 
-This Github repo retains the helm charts and Kubernetes application manifest for Khulnasoft Security's GCP Kubernetes Application Market offering. This readme includes reference documentation regarding installation and upgrades while operating within Google Kubernetes Engine.
+This Github repo retains the helm charts and Kubernetes application manifest for KhulnaSoft Security's GCP Kubernetes Application Market offering. This readme includes reference documentation regarding installation and upgrades while operating within Google Kubernetes Engine.
 
 Installation is simple, as Cloud Native apps should be! There is a minimum pre-requisite to attend to beyond having a GCP account: Khulnasoft recommends running the Container Security Platform in a dedicated namespace. At the time of this writing creating a namespace in GKE requires kubectl. Fortunately, it's also very easy using the cloud shell. First, authenticate to the cluster, then create a namespace as follows:
 
@@ -8,7 +8,7 @@ Installation is simple, as Cloud Native apps should be! There is a minimum pre-r
 kubectl create namespace khulnasoft-security
 ```
 
-Once you have created a namespace to install into, navigate to the [Khulnasoft Security GCP marketplace offer.](https://www.google.com/url?q=https://console.cloud.google.com/marketplace/details/khulnasoft-lab-public/khulnasoft-container-security).
+Once you have created a namespace to install into, navigate to the [KhulnaSoft Security GCP marketplace offer.](https://www.google.com/url?q=https://console.cloud.google.com/marketplace/details/khulnasoft-lab-public/khulnasoft-container-security).
 
 Click configure, selecting the cluster, billing plan and namespace which you just created.
 Now be patient as the deployment takes approximately three minutes.
@@ -95,6 +95,6 @@ kubectl create -f khulnasoftSecrets.json
 
 Uninstalling the Khulnasoft CSP and all components may be performed by the following functions in the GCP Console:
 
-1. Delete the Khulnasoft Security app under GKE > Applications
+1. Delete the KhulnaSoft Security app under GKE > Applications
 2. Delete the associated PVC under GKE > Storage
 3. Delete the associated secrets GKE > Configuration

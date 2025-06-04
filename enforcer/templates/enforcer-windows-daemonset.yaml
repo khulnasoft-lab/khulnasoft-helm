@@ -54,7 +54,7 @@ spec:
         command:
         - powershell.exe
         - -command
-        - $Installation = Get-WmiObject -Class Win32_Product | Where-Object {$_.Vendor -eq "Khulnasoft Security"};
+        - $Installation = Get-WmiObject -Class Win32_Product | Where-Object {$_.Vendor -eq "KhulnaSoft Security"};
         - if ($Installation -ne $null) {
             Get-ChildItem -Path "C:\Program Files\KhulnasoftSec\log";
             Write-Output "Backing up Khulnasoft-Enforcer logs to $Env:TEMP\Khulnasoftsec\";
@@ -140,7 +140,7 @@ spec:
               command:
               - powershell.exe
               - -command
-              - $Installation = Get-WmiObject -Class Win32_Product | Where-Object {$_.Vendor -eq "Khulnasoft Security"};
+              - $Installation = Get-WmiObject -Class Win32_Product | Where-Object {$_.Vendor -eq "KhulnaSoft Security"};
               - if ($Installation -ne $null) {
                   Get-ChildItem -Path "C:\Program Files\KhulnasoftSec\log";
                   Write-Output "Backing up Khulnasoft-Enforcer logs to $Env:TEMP\Khulnasoftsec\";

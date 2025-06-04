@@ -1,12 +1,12 @@
 <img src="https://avatars3.githubusercontent.com/u/43526139?s=200&v=4" height="100" width="100" /><img src="https://avatars3.githubusercontent.com/u/15859888?s=200&v=4" width="100" height="100"/>
 
-# Khulnasoft Security Gateway Helm Chart
+# KhulnaSoft Security Gateway Helm Chart
 
 Helm chart for installation and maintenance of Khulnasoft Container Security Platform Gateway component to support multi-cluster use-case.
 
 ## Contents
 
-- [Khulnasoft Security Gateway Helm Chart](#khulnasoft-security-gateway-helm-chart)
+- [KhulnaSoft Security Gateway Helm Chart](#khulnasoft-security-gateway-helm-chart)
   - [Contents](#contents)
   - [Prerequisites](#prerequisites)
     - [Container Registry Credentials](#container-registry-credentials)
